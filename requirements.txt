@@ -1,0 +1,5 @@
+# 本包不依赖任何第三方 Python 包。
+# 只用标准库：csv, json, math, os, random, re, statistics, sys, time, decimal。
+# xlsx2csv.py 与 svgplot.py 是本包自带的最小实现，替代 openpyxl 与 matplotlib。
+#
+# Python >= 3.10（用到 statistics.median 与 f-string 的常规用法）。

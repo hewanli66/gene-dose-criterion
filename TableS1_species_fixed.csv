@@ -1,0 +1,97 @@
+﻿species,rep_genome_id,genome_id,hdcA_type,n_HSB_strains,n_total_strains,strains_fraction_as_published,gtdb_r95_taxonomy
+Morganella psychrotolerans,GCF_001676155.1,GCF_001676155.1,PLP,2,2,2/2,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Enterobacteriaceae;g__Morganella;s__Morganella psychrotolerans
+Morganella morganii,GCA_900635025.1,GCA_900635025.1,PLP,50,51,50/51,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Enterobacteriaceae;g__Morganella;s__Morganella morganii
+Serratia fonticola,GCF_006715025.1,GCF_006715025.1,PLP,2,2,2/2,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Enterobacteriaceae;g__Serratia_A;s__Serratia_A fonticola_A
+Morganella psychrotolerans B,GCF_001676055.1,GCF_001676055.1,PLP,2,2,2/2,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Enterobacteriaceae;g__Morganella;s__Morganella psychrotolerans_B
+Haemophilus aegyptius,GCF_000195005.1,GCF_000195005.1,PLP,14,20,14/20,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Pasteurellaceae;g__Haemophilus;s__Haemophilus aegyptius
+Serratia rubidaea,GCF_901472405.1,GCF_001572725.1,PLP,1,7,1/7,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Enterobacteriaceae;g__Serratia_B;s__Serratia_B rubidaea
+Photobacterium damselae,GCF_003026815.1,GCF_003026815.1,PLP,13,37,13/37,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Vibrionaceae;g__Photobacterium;s__Photobacterium damselae
+Tetragenococcus halophilus,GCF_003841405.1,GCF_002897555.1,pyruvoyl,1,20,1/20,d__Bacteria;p__Firmicutes;c__Bacilli;o__Lactobacillales;f__Enterococcaceae;g__Tetragenococcus;s__Tetragenococcus halophilus
+Haemophilus influenzae,GCF_001457655.1,GCF_000175435.1,PLP,10,645,10/645,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Pasteurellaceae;g__Haemophilus;s__Haemophilus influenzae
+Photobacterium sp900185615,GCF_900185615.1,GCF_001676065.1,PLP,4,5,4/5,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Vibrionaceae;g__Photobacterium;s__Photobacterium sp900185615
+Photobacterium aquimaris,GCF_002954455.1,GCF_900185565.1,PLP,2,6,2/6,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Vibrionaceae;g__Photobacterium;s__Photobacterium aquimaris
+Raoultella ornithinolytica,GCF_001598295.1,GCF_001598295.1,PLP,63,63,63/63,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Enterobacteriaceae;g__Raoultella;s__Raoultella ornithinolytica
+Salmonella diarizonae,GCA_003325215.1,GCA_003325215.1,PLP,61,85,61/85,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Enterobacteriaceae;g__Salmonella;s__Salmonella diarizonae
+Fusobacterium ulcerans,GCF_003019675.1,GCF_003019675.1,pyruvoyl,5,5,5/5,d__Bacteria;p__Fusobacteriota;c__Fusobacteriia;o__Fusobacteriales;f__Fusobacteriaceae;g__Fusobacterium_A;s__Fusobacterium_A ulcerans
+Tetragenococcus muriaticus,GCF_000423785.1,GCF_000423785.1,pyruvoyl,1,3,1/3,d__Bacteria;p__Firmicutes;c__Bacilli;o__Lactobacillales;f__Enterococcaceae;g__Tetragenococcus;s__Tetragenococcus muriaticus
+Bacillus bombysepticus,GCF_006384875.1,GCA_001198395.1,pyruvoyl,1,495,1/495,d__Bacteria;p__Firmicutes;c__Bacilli;o__Bacillales;f__Bacillaceae_G;g__Bacillus_A;s__Bacillus_A bombysepticus
+Lactobacillus lindneri,GCF_002907375.1,GCF_002907375.1,pyruvoyl,12,12,12/12,d__Bacteria;p__Firmicutes;c__Bacilli;o__Lactobacillales;f__Lactobacillaceae;g__Fructilactobacillus;s__Fructilactobacillus lindneri
+Morganella morganii A,GCF_001006565.1,GCF_001006565.1,PLP,6,6,6/6,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Enterobacteriaceae;g__Morganella;s__Morganella morganii_A
+Ornithobacterium rhinotracheale,GCF_000265465.1,GCF_000265465.1,pyruvoyl,3,3,3/3,d__Bacteria;p__Bacteroidota;c__Bacteroidia;o__Flavobacteriales;f__Weeksellaceae;g__Ornithobacterium;s__Ornithobacterium rhinotracheale
+Cetobacterium somerae,GCF_000479045.1,GCF_000479045.1,pyruvoyl,1,1,1/1,d__Bacteria;p__Fusobacteriota;c__Fusobacteriia;o__Fusobacteriales;f__Fusobacteriaceae;g__Cetobacterium_A;s__Cetobacterium_A somerae
+Fusobacterium ulcerans A,GCF_900683735.1,GCF_900683735.1,pyruvoyl,2,2,2/2,d__Bacteria;p__Fusobacteriota;c__Fusobacteriia;o__Fusobacteriales;f__Fusobacteriaceae;g__Fusobacterium_A;s__Fusobacterium_A ulcerans_A
+Lentilactobacillus kefiri,GCA_001311745.1,GCF_002276775.1,pyruvoyl,1,6,1/6,d__Bacteria;p__Firmicutes;c__Bacilli;o__Lactobacillales;f__Lactobacillaceae;g__Lentilactobacillus;s__Lentilactobacillus kefiri
+Bombilactobacillus bombi,GCF_003522965.1,GCF_003515755.1,pyruvoyl,1,3,1/3,d__Bacteria;p__Firmicutes;c__Bacilli;o__Lactobacillales;f__Lactobacillaceae;g__Bombilactobacillus;s__Bombilactobacillus bombi
+Staphylococcus saccharolyticus,GCF_900458815.1,GCF_900458815.1,pyruvoyl,9,9,9/9,d__Bacteria;p__Firmicutes;c__Bacilli;o__Staphylococcales;f__Staphylococcaceae;g__Staphylococcus;s__Staphylococcus saccharolyticus
+Lactobacillus reuteri,GCF_000016825.1,GCF_000016825.1,pyruvoyl,28,114,28/114,d__Bacteria;p__Firmicutes;c__Bacilli;o__Lactobacillales;f__Lactobacillaceae;g__Limosilactobacillus;s__Limosilactobacillus reuteri
+Plesiomonas shigelloides,GCF_900087055.1,GCF_900087055.1,pyruvoyl/PLP,9,10,9/10,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Enterobacteriaceae;g__Plesiomonas;s__Plesiomonas shigelloides
+Fusobacterium varium,GCF_900637705.1,GCF_900637705.1,pyruvoyl,7,7,7/7,d__Bacteria;p__Fusobacteriota;c__Fusobacteriia;o__Fusobacteriales;f__Fusobacteriaceae;g__Fusobacterium_A;s__Fusobacterium_A varium
+Photobacterium kishitanii,GCF_003026355.1,GCF_003026355.1,PLP,24,24,24/24,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Vibrionaceae;g__Photobacterium;s__Photobacterium kishitanii
+Photobacterium angustum,GCF_003026365.1,GCA_000950315.1,PLP,21,27,21/27,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Vibrionaceae;g__Photobacterium;s__Photobacterium angustum
+Haemophilus sp002998595,GCF_002998595.1,GCF_002998595.1,PLP,3,16,3/16,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Pasteurellaceae;g__Haemophilus;s__Haemophilus sp002998595
+21-14-0-10-35-9 sp002773835,GCA_002773835.1,GCA_002773835.1,pyruvoyl,1,1,1/1,d__Bacteria;p__Verrucomicrobiota_A;c__Chlamydiia;o__Parachlamydiales;f__SM23-39;g__21-14-0-10-35-9;s__21-14-0-10-35-9 sp002773835
+Lactobacillus timonensis,GCF_900240275.1,GCF_900240275.1,pyruvoyl,1,1,1/1,d__Bacteria;p__Firmicutes;c__Bacilli;o__Lactobacillales;f__Lactobacillaceae;g__Limosilactobacillus;s__Limosilactobacillus timonensis
+Fusobacterium varium A,GCF_002356455.1,GCF_002356455.1,pyruvoyl,1,1,1/1,d__Bacteria;p__Fusobacteriota;c__Fusobacteriia;o__Fusobacteriales;f__Fusobacteriaceae;g__Fusobacterium_A;s__Fusobacterium_A varium_A
+Pantoea coffeiphila,GCF_002976475.1,GCF_002976475.1,PLP,1,1,1/1,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Enterobacteriaceae;g__Erwinia;s__Erwinia coffeiphila
+Morganella morganii B,GCF_000633515.1,GCF_000633515.1,PLP,3,3,3/3,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Enterobacteriaceae;g__Morganella;s__Morganella morganii_B
+Morganella morganii C,GCF_003996855.1,GCF_003996855.1,PLP,1,1,1/1,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Enterobacteriaceae;g__Morganella;s__Morganella morganii_C
+ATN3 sp003577105,GCA_003577105.1,GCA_003577105.1,pyruvoyl,1,1,1/1,d__Bacteria;p__Actinobacteriota;c__Acidimicrobiia;o__ATN3;f__ATN3;g__ATN3;s__ATN3 sp003577105
+Bifidobacterium gallicum,GCF_000741205.1,GCF_000741205.1,pyruvoyl,3,3,3/3,d__Bacteria;p__Actinobacteriota;c__Actinomycetia;o__Actinomycetales;f__Bifidobacteriaceae;g__Bifidobacterium;s__Bifidobacterium gallicum
+Bifidobacterium magnum,GCF_000741255.1,GCF_000741255.1,pyruvoyl,3,3,3/3,d__Bacteria;p__Actinobacteriota;c__Actinomycetia;o__Actinomycetales;f__Bifidobacteriaceae;g__Bifidobacterium;s__Bifidobacterium magnum
+BMS3ABIN01 sp002897715,GCA_002897715.1,GCA_002897715.1,pyruvoyl,1,1,1/1,d__Bacteria;p__Actinobacteriota;c__Thermoleophilia;o__BMS3ABIN01;f__BMS3ABIN01;g__BMS3ABIN01;s__BMS3ABIN01 sp002897715
+Fen-455 sp003139355,GCA_003139355.1,GCA_003139355.1,pyruvoyl,19,20,19/20,d__Bacteria;p__Actinobacteriota;c__Acidimicrobiia;o__Acidimicrobiales;f__Bog-793;g__Fen-455;s__Fen-455 sp003139355
+Fen-455 sp003140595,GCA_003140595.1,GCA_003140595.1,pyruvoyl,27,27,27/27,d__Bacteria;p__Actinobacteriota;c__Acidimicrobiia;o__Acidimicrobiales;f__Bog-793;g__Fen-455;s__Fen-455 sp003140595
+Gordonibacter pamelaeae,GCF_000210055.1,GCF_000210055.1,pyruvoyl,2,2,2/2,d__Bacteria;p__Actinobacteriota;c__Coriobacteriia;o__Coriobacteriales;f__Eggerthellaceae;g__Gordonibacter;s__Gordonibacter pamelaeae
+Eggerthella sinensis,GCF_003339815.1,GCF_003339815.1,pyruvoyl,2,2,2/2,d__Bacteria;p__Actinobacteriota;c__Coriobacteriia;o__Coriobacteriales;f__Eggerthellaceae;g__Eggerthella;s__Eggerthella sinensis
+Paraeggerthella hongkongensis A,GCF_003340345.1,GCF_003340345.1,pyruvoyl,2,2,2/2,d__Bacteria;p__Actinobacteriota;c__Coriobacteriia;o__Coriobacteriales;f__Eggerthellaceae;g__Paraeggerthella;s__Paraeggerthella hongkongensis_A
+Paraeggerthella hongkongensis,GCF_003726035.1,GCF_003726035.1,pyruvoyl,2,2,2/2,d__Bacteria;p__Actinobacteriota;c__Coriobacteriia;o__Coriobacteriales;f__Eggerthellaceae;g__Paraeggerthella;s__Paraeggerthella hongkongensis
+Gordonibacter urolithinfaciens,GCF_900199375.1,GCF_900199375.1,pyruvoyl,4,4,4/4,d__Bacteria;p__Actinobacteriota;c__Coriobacteriia;o__Coriobacteriales;f__Eggerthellaceae;g__Gordonibacter;s__Gordonibacter urolithinfaciens
+Eggerthella lenta,GCF_000024265.1,GCF_000024265.1,pyruvoyl,32,32,32/32,d__Bacteria;p__Actinobacteriota;c__Coriobacteriia;o__Coriobacteriales;f__Eggerthellaceae;g__Eggerthella;s__Eggerthella lenta
+Gordonibacter sp003339845,GCF_003339845.1,GCF_003339845.1,pyruvoyl,1,1,1/1,d__Bacteria;p__Actinobacteriota;c__Coriobacteriia;o__Coriobacteriales;f__Eggerthellaceae;g__Gordonibacter;s__Gordonibacter sp003339845
+Gordonibacter massiliensis,GCF_900170005.1,GCF_900170005.1,pyruvoyl,1,1,1/1,d__Bacteria;p__Actinobacteriota;c__Coriobacteriia;o__Coriobacteriales;f__Eggerthellaceae;g__Gordonibacter;s__Gordonibacter massiliensis
+Raoultibacter massiliensis,GCF_900199545.1,GCF_900199545.1,pyruvoyl,1,1,1/1,d__Bacteria;p__Actinobacteriota;c__Coriobacteriia;o__Coriobacteriales;f__Eggerthellaceae;g__Raoultibacter;s__Raoultibacter massiliensis
+Raoultibacter timonensis,GCF_900240215.1,GCF_900240215.1,pyruvoyl,1,1,1/1,d__Bacteria;p__Actinobacteriota;c__Coriobacteriia;o__Coriobacteriales;f__Eggerthellaceae;g__Raoultibacter;s__Raoultibacter timonensis
+D16-63 sp003612475,GCF_003612475.1,GCF_003612475.1,pyruvoyl,1,1,1/1,d__Bacteria;p__Actinobacteriota;c__Coriobacteriia;o__Coriobacteriales;f__Eggerthellaceae;g__D16-63;s__D16-63 sp003612475
+Eggerthella timonensis,GCF_900184265.1,GCF_900184265.1,pyruvoyl,1,1,1/1,d__Bacteria;p__Actinobacteriota;c__Coriobacteriia;o__Coriobacteriales;f__Eggerthellaceae;g__Eggerthella;s__Eggerthella timonensis
+RAAP-2 sp003133685,GCA_003133685.1,GCA_003133685.1,pyruvoyl,1,3,1/3,d__Bacteria;p__Actinobacteriota;c__Acidimicrobiia;o__Acidimicrobiales;f__RAAP-2;g__RAAP-2;s__RAAP-2 sp003133685
+Clostridium perfringens,GCF_000013285.1,GCF_000013285.1,pyruvoyl,144,144,144/144,d__Bacteria;p__Firmicutes_A;c__Clostridia;o__Clostridiales;f__Clostridiaceae;g__Clostridium_P;s__Clostridium_P perfringens
+RAAP-2 sp003138895,GCA_003138895.1,GCA_003136535.1,pyruvoyl,2,6,2/6,d__Bacteria;p__Actinobacteriota;c__Acidimicrobiia;o__Acidimicrobiales;f__RAAP-2;g__RAAP-2;s__RAAP-2 sp003138895
+Bacteroides oleiciplenus,GCF_000315485.1,GCF_000315485.1,pyruvoyl,2,2,2/2,d__Bacteria;p__Bacteroidota;c__Bacteroidia;o__Bacteroidales;f__Bacteroidaceae;g__Bacteroides;s__Bacteroides oleiciplenus
+Bacteroides stercorirosoris,GCF_000614165.1,GCF_000614165.1,pyruvoyl,5,5,5/5,d__Bacteria;p__Bacteroidota;c__Bacteroidia;o__Bacteroidales;f__Bacteroidaceae;g__Bacteroides;s__Bacteroides stercorirosoris
+GCA-900066935 sp900066925,GCA_900066925.1,GCA_900066925.1,pyruvoyl,2,2,2/2,d__Bacteria;p__Firmicutes_A;c__Clostridia;o__Peptostreptococcales;f__Peptostreptococcaceae;g__GCA-900066935;s__GCA-900066935 sp900066925
+Bacteroides nordii,GCF_000613465.1,GCA_001915435.1,pyruvoyl,2,5,2/5,d__Bacteria;p__Bacteroidota;c__Bacteroidia;o__Bacteroidales;f__Bacteroidaceae;g__Bacteroides;s__Bacteroides nordii
+Lactobacillus vaginalis,GCF_000159435.1,GCF_000159435.1,pyruvoyl,2,4,2/4,d__Bacteria;p__Firmicutes;c__Bacilli;o__Lactobacillales;f__Lactobacillaceae;g__Limosilactobacillus;s__Limosilactobacillus vaginalis
+Lactobacillus parabuchneri,GCF_001435315.1,GCF_001435315.1,pyruvoyl,18,25,18/25,d__Bacteria;p__Firmicutes;c__Bacilli;o__Lactobacillales;f__Lactobacillaceae;g__Lentilactobacillus;s__Lentilactobacillus parabuchneri
+Clostridium fallax,GCF_900129365.1,GCF_900129365.1,pyruvoyl,2,2,2/2,d__Bacteria;p__Firmicutes_A;c__Clostridia;o__Clostridiales;f__Clostridiaceae;g__Clostridium_AH;s__Clostridium_AH fallax
+Paeniclostridium sordellii,GCA_000953675.1,GCA_000953675.1,pyruvoyl,1,1,1/1,d__Bacteria;p__Firmicutes_A;c__Clostridia;o__Peptostreptococcales;f__Peptostreptococcaceae;g__Paeniclostridium;s__Paeniclostridium sordellii
+Clostridium thermobutyricum,GCF_002050515.1,GCF_000371465.1,pyruvoyl,1,2,1/2,d__Bacteria;p__Firmicutes_A;c__Clostridia;o__Clostridiales;f__Clostridiaceae;g__Clostridium;s__Clostridium thermobutyricum
+Lactobacillus aviarius,GCF_001436315.1,GCF_001436315.1,pyruvoyl,1,1,1/1,d__Bacteria;p__Firmicutes;c__Bacilli;o__Lactobacillales;f__Lactobacillaceae;g__Ligilactobacillus;s__Ligilactobacillus aviarius
+Lactobacillus vaginalis A,GCF_002871555.1,GCF_002871555.1,pyruvoyl,1,1,1/1,d__Bacteria;p__Firmicutes;c__Bacilli;o__Lactobacillales;f__Lactobacillaceae;g__Limosilactobacillus;s__Limosilactobacillus vaginalis_A
+Lactobacillus fermentum,GCF_000159215.1,GCA_000477515.1,pyruvoyl,1,64,1/64,d__Bacteria;p__Firmicutes;c__Bacilli;o__Lactobacillales;f__Lactobacillaceae;g__Limosilactobacillus;s__Limosilactobacillus fermentum
+Lactobacillus saerimneri,GCF_000423265.1,GCF_000317165.1,pyruvoyl,1,3,1/3,d__Bacteria;p__Firmicutes;c__Bacilli;o__Lactobacillales;f__Lactobacillaceae;g__Ligilactobacillus;s__Ligilactobacillus saerimneri
+Romboutsia hominis,GCA_900002575.1,GCA_900002575.1,pyruvoyl,2,2,2/2,d__Bacteria;p__Firmicutes_A;c__Clostridia;o__Peptostreptococcales;f__Peptostreptococcaceae;g__Romboutsia;s__Romboutsia hominis
+Staphylococcus capitis,GCF_002902325.1,GCF_002902325.1,pyruvoyl,15,82,15/82,d__Bacteria;p__Firmicutes;c__Bacilli;o__Staphylococcales;f__Staphylococcaceae;g__Staphylococcus;s__Staphylococcus capitis
+Staphylococcus epidermidis,GCF_006742205.1,GCF_000186205.1,pyruvoyl,5,615,5/615,d__Bacteria;p__Firmicutes;c__Bacilli;o__Staphylococcales;f__Staphylococcaceae;g__Staphylococcus;s__Staphylococcus epidermidis
+Staphylococcus warneri,GCF_900636385.1,GCA_001196045.1,pyruvoyl,2,43,2/43,d__Bacteria;p__Firmicutes;c__Bacilli;o__Staphylococcales;f__Staphylococcaceae;g__Staphylococcus;s__Staphylococcus warneri
+Streptococcus thermophilus,GCF_004354505.1,GCF_000521285.1,pyruvoyl,3,58,3/58,d__Bacteria;p__Firmicutes;c__Bacilli;o__Lactobacillales;f__Streptococcaceae;g__Streptococcus;s__Streptococcus thermophilus
+Cellulosilyticum sp900556665,GCA_900556665.1,GCA_900556665.1,pyruvoyl,1,1,1/1,d__Bacteria;p__Firmicutes_A;c__Clostridia;o__Lachnospirales;f__Cellulosilyticaceae;g__Cellulosilyticum;s__Cellulosilyticum sp900556665
+Clostridium baratii,GCF_000789395.1,GCF_000789395.1,pyruvoyl,10,10,10/10,d__Bacteria;p__Firmicutes_A;c__Clostridia;o__Clostridiales;f__Clostridiaceae;g__Clostridium;s__Clostridium baratii
+Paludibacterium purpuratum,GCF_004363805.1,GCF_004363805.1,PLP,1,1,1/1,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Burkholderiales;f__Chromobacteriaceae;g__Paludibacterium;s__Paludibacterium purpuratum
+Sinobacterium caligoides,GCF_003752585.1,GCF_003752585.1,PLP,1,1,1/1,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Pseudomonadales;f__DSM-100316;g__Sinobacterium;s__Sinobacterium caligoides
+1-19 sp001922585,GCF_001922585.1,GCF_001922585.1,PLP,1,1,1/1,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Enterobacteriaceae;g__1-19;s__1-19 sp001922585
+Citrobacter sp004684345,GCF_004684345.1,GCF_004684345.1,PLP,1,1,1/1,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Enterobacteriaceae;g__Citrobacter;s__Citrobacter sp004684345
+Citrobacter sp005281345,GCF_005281345.1,GCF_005281345.1,PLP,1,1,1/1,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Enterobacteriaceae;g__Citrobacter;s__Citrobacter sp005281345
+Erwinia sp004022165,GCF_004022165.1,GCF_004022165.1,PLP,1,1,1/1,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Enterobacteriaceae;g__Erwinia;s__Erwinia sp004022165
+Erwinia sp003751505,GCF_003751505.1,GCF_003751505.1,PLP,1,1,1/1,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Enterobacteriaceae;g__Erwinia;s__Erwinia sp003751505
+Izhakiella australiensis,GCF_002006995.1,GCF_002006995.1,PLP,1,1,1/1,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Enterobacteriaceae;g__Izhakiella;s__Izhakiella australiensis
+Izhakiella capsodis,GCF_900115045.1,GCF_900115045.1,PLP,1,1,1/1,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Enterobacteriaceae;g__Izhakiella;s__Izhakiella capsodis
+LSJC7 sp005671395,GCF_005671395.1,GCF_005671395.1,PLP,1,1,1/1,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Enterobacteriaceae;g__LSJC7;s__LSJC7 sp005671395
+Raoultella electrica,GCF_006711645.1,GCF_006711645.1,PLP,1,3,1/3,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Enterobacteriaceae;g__Raoultella;s__Raoultella electrica
+Tatumella citrea,GCF_002163585.1,GCF_002163585.1,PLP,2,2,2/2,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Enterobacteriaceae;g__Tatumella;s__Tatumella citrea
+Citrobacter youngae,GCF_003818115.1,GCF_003818115.1,PLP,17,17,17/17,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Enterobacteriaceae;g__Citrobacter;s__Citrobacter youngae
+Erwinia persicina,GCF_001571305.1,GCF_001571305.1,PLP,5,9,5/9,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Enterobacteriaceae;g__Erwinia;s__Erwinia persicina
+Klebsiella aerogenes,GCF_000215745.1,GCF_000215745.1,PLP,200,203,200/203,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Enterobacteriaceae;g__Klebsiella_B;s__Klebsiella_B aerogenes
+Raoultella planticola,GCF_000735435.1,GCF_002108615.1,PLP,8,33,8/33,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Enterobacteriaceae;g__Raoultella;s__Raoultella planticola
+Haemophilus influenzae D,GCF_900475755.1,GCF_001184595.1,PLP,8,65,8/65,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Pasteurellaceae;g__Haemophilus;s__Haemophilus influenzae_D
+Shewanella marina,GCF_000614975.1,GCF_000614975.1,PLP,1,1,1/1,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Shewanellaceae;g__Shewanella;s__Shewanella marina
+Vibrio fujianensis,GCF_002749895.1,GCF_002749895.1,PLP,1,1,1/1,d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Vibrionaceae;g__Vibrio;s__Vibrio fujianensis
