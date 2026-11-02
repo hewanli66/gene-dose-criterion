@@ -16,3 +16,5 @@
 | *Bacteroides eggerthii* | 12/12 | 1.0000 | 0.02564 | 0.0651 | 0.0003 |
 
 *H* = 0.0364, *c*<sub>eff</sub> = 0.9358, *n*<sub>sp</sub> = 11. Weights are relative abundances renormalised over carriers; the contribution column is the summand of *H* and the column sums to *H*. A species represented by a single genome cannot yield a carriage rate (the estimate can only be 0 or 1) and is marked n/a; it contributes to neither *c*<sub>eff</sub> nor *H*.
+
+*Sensitivity to the two species whose carriage is below 1.* Only *P. copri* (10/12) and *F. prausnitzii* (3/12) can be moved by the choice of genomes; the other nine are 12/12. Setting *c*<sub>*s*</sub> to 0 for one species also removes it from the count of carrying species, so *n*<sub>sp</sub> falls from 11 to 10 and both ratios below use *H*\* = 0.0732 rather than the 0.0757 of the main comparison. *F. prausnitzii*, which supplies 88% of *H*, gives *H* = 0.0637 (*H*/*H*\* = 0.87); *P. copri* gives *H* = 0.0998 (*H*/*H*\* = 1.36).
