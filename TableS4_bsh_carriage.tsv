@@ -1,0 +1,13 @@
+species	strains_carrying	strains_tested	c_s	mean_relative_abundance_ELDERMET	weight	contribution_to_H	note
+Bacteroides uniformis	12	12	1.0000	0.075073	0.1905	0.0008	
+Subdoligranulum	0	1	n/a	0.052473	n/a	n/a	single strain; not estimable
+Alistipes putredinis	12	12	1.0000	0.049608	0.1259	0.0005	
+Bacteroides vulgatus	12	12	1.0000	0.038050	0.0966	0.0004	
+Barnesiella intestinihominis	12	12	1.0000	0.033737	0.0856	0.0004	
+Prevotella copri	10	12	0.8333	0.030831	0.0782	0.0008	
+Alistipes onderdonkii	12	12	1.0000	0.029830	0.0757	0.0003	
+Bacteroides dorei	12	12	1.0000	0.029078	0.0738	0.0003	
+Bacteroides ovatus	12	12	1.0000	0.027982	0.0710	0.0003	
+Parabacteroides merdae	12	12	1.0000	0.027376	0.0695	0.0003	
+Faecalibacterium prausnitzii	3	12	0.2500	0.026863	0.0682	0.0321	
+Bacteroides eggerthii	12	12	1.0000	0.025638	0.0651	0.0003	

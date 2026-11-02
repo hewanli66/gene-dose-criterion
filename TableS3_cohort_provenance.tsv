@@ -1,0 +1,11 @@
+cohort_setting	country	profiler	n_retained	species	pool_prevalence_20pct	carriers_visible	age	reference	source_record	derived_matrix	note
+ELDERMET (Ireland)	Ireland	MetaPhlAn 3	189	836	149	20	older adults	[7]	Supplementary File 2 of the ELDERMET study	ELDERMET_species_189x836.csv	b
+CRC collection, 9 cohorts	9 countries	MetaPhlAn 3	1262	917	164	25	not stated	[9]	Supplementary file 5, sheet CRC_metaphlan3_profiles	CRC9_species_1262x917.csv	d
+Guangzhou (China)	China	MetaPhlAn 3	49	575	121	19	15–48, median 28 (*n* = 48)	[12]	cMD3 HeQ_2017_MetaPhlAn3.tsv (Zenodo 17567900)	HeQ2017_samples_122x.csv	g
+SG90 (Singapore), all	Singapore	MetaPhlAn 4	516	382	69	14	see note j	[15]	supplementary data of the SG90 study	SG90_species_abundances.csv	j
+SG90, aged ≥77	Singapore	MetaPhlAn 4	221	382	63	14	≥77	[15]	same, subset by recorded age	SG90_species_abundances.csv	j
+Villages (Honduras)	Honduras	MetaPhlAn 4	1787	1910	467	30	adults, not stated	[16]	Supplementary Data 4 of the village-network study	Village_species_1787x1910.csv	e
+Screening cohort (Japan)	Japan	MetaPhlAn 4	615	1835	300	25	21–79, median 64	[13]	Zenodo 15069069, Public_study__YachidaS_2019.tsv	Yachida2019_samples_615x1835.csv	h
+Wave 3 (China), aged ≥65	China	mOTU	59	3694	128	26	65–103, median 75	[8]	Supplementary Tables 2 and 1 of the Wave 3 study	Wave3_species_59x.csv	c
+Xi’an cohort (China)	China	mOTU	171	359	211	8	mean 30.6, 13–64	[11]	species table, sheet Fig 3a, baseline block only	Zhu2020_species_171x359.csv	f
+Coronary cohort (China)	China	mOTU	102	284	116	11	not reported	[14]	Zenodo 4991531, mOTU.prof.upload.txt	CHD_species_102x.csv	i

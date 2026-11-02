@@ -1,0 +1,13 @@
+Table S3 逐格重算 vs Table S1（三列：n / 物种 / 池）
+ELDERMET (Ireland)           重算 n= 189 物种= 836 池=149 | Table S1 n= 189 物种= 836 池=149  OK
+CRC collection, 9 cohorts    重算 n=1262 物种= 917 池=164 | Table S1 n=1262 物种= 917 池=164  OK
+Guangzhou (China)            重算 n=  49 物种= 575 池=121 | Table S1 n=  49 物种= 575 池=121  OK
+SG90 (Singapore), all        重算 n= 516 物种= 382 池= 69 | Table S1 n= 516 物种= 382 池= 69  OK
+SG90, aged ≥77               重算 n= 221 物种= 382 池= 63 | Table S1 n= 221 物种= 382 池= 63  OK
+Villages (Honduras)          重算 n=1787 物种=1910 池=467 | Table S1 n=1787 物种=1910 池=467  OK
+Screening cohort (Japan)     重算 n= 615 物种=1835 池=300 | Table S1 n= 615 物种=1835 池=300  OK
+Wave 3 (China), aged ≥65     重算 n=  59 物种=3694 池=128 | Table S1 n=  59 物种=3694 池=128  OK
+Xi’an cohort (China)         重算 n= 171 物种= 359 池=211 | Table S1 n= 171 物种= 359 池=211  OK
+Coronary cohort (China)      重算 n= 102 物种= 284 池=116 | Table S1 n= 102 物种= 284 池=116  OK
+
+不一致 0 格

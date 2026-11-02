@@ -27,7 +27,10 @@ Two commands run against what is in this folder and take a few seconds:
 ```bash
 python gen_supp_tables.py     # rebuilds Supplementary Tables S1 and S2,
                               # and cross-checks all 40 cells against Table 5
+python gen_cohort_table.py    # rebuilds Supplementary Table S3 (cohort provenance)
+                              # and checks its n / species / pool against Table S1
 python diag_ratio_spread.py   # recomputes the seed spreads quoted in section 2.4
+python gen_bsh_table.py       # rebuilds Supplementary Table S4 from domain_carriage.tsv
 ```
 
 `gen_supp_tables.py` prints `Table S1 与 Table 5 逐格核对：40 格，0 处不一致`
@@ -58,17 +61,34 @@ deposited files and must agree cell by cell.
 | `cross_cohort.py`, `cross_cohort3.py`, `cross_cohort5.py`, `cross_cohort8.py`, `cross_cohort_seed.py` | The same computation at each earlier stage of the cohort set (one, three, five, eight cohorts, and the four-seed variant). Kept because Methods §2.4 traces the sequence of additions through them; `cross_cohort9_seed.py` supersedes all of them for the values reported in the paper. | species matrices | `cross_cohort*.tsv`, `cross_cohort*.txt` |
 | `eff_calibration.py`, `lambda_v2.py`, `spikein_test.py` | Section 2.7: detector efficiency from an endogenous single-copy control (`rpoB`), the Poisson expectation for a 1-kb gene, and the in-silico spike-in. | reads, `rpob_ref.json`, `conserved_kmers.json` | `eff_calibration.txt`, `lambda_v2.tsv`, `lambda_v2.txt` |
 | `fetch_rpob.py`, `extract_kmers.py`, `scan_rpob.py` | Fetch the `rpoB` references from the EBI Proteins API, build the conserved k-mer set and the full k-mer index, and scan reads against it. | EBI Proteins API, ENA reads | `rpob_ref.json`, `conserved_kmers.json`, `reference_kmers.json` |
+| `domain_carriage.py` | **Supplementary Table S4**: strain-level carriage of bile salt hydrolase, measured genome by genome. Downloads proteomes from **UniParc** (not UniProtKB — see note below), scans them with a Pfam HMM through pyhmmer, and computes *c*<sub>*s*</sub>, *H* and λ. | UniParc/EBI and InterPro (network); local Pfam HMM files | `domain_family.tsv`, `domain_carriage.tsv`, `domain_hits.tsv` |
+| `gen_bsh_table.py` | Lays out Supplementary Table S4 with the abundance weights and the per-species contribution to *H*, and re-derives *H* from those columns as a check. | `domain_carriage.tsv` | `TableS4_bsh_carriage.{tsv,md}` |
 | `svgplot.py` | Minimal SVG plotting layer used by `make_figures.py`. No matplotlib. | — | — |
 | `xlsx2csv.py` | Minimal xlsx reader used by `motu2matrix.py`. | — | — |
+
+> **Why UniParc and not UniProtKB.** A proteome-indexed FASTA request against UniProtKB
+> returns an empty record for every strain except the species reference, even though the
+> proteome is listed with a full protein count. UniParc holds the sequences for all
+> strains and indexes them by proteome, so `uniparc/stream?query=proteome:<UPID>` is the
+> endpoint that works; the returned sequence count matches the listed protein count. This
+> cost half an hour of empty downloads to find, and is recorded so that it does not cost
+> the next reader the same. No functional annotation is needed for the HMM scan, so
+> UniParc's lack of annotation is not a limitation.
 
 ### Deposited results
 
 | File | What it holds |
 |---|---|
+| `gen_cohort_table.py` | **Supplementary Table S3**: the ten cohort-settings with samples retained, species count, prevalence-filtered pool and catalogue carriers visible. | the nine abundance matrices in this folder | `TableS3_cohort_provenance.{tsv,md}`, `TableS3_check.txt` |
+| `TableS3_cohort_provenance.tsv` | **Supplementary Table S3**, one row per cohort-setting, with the depository record, the file used and the filtering note. | | |
 | `TableS1_threshold_detail.tsv` | **Supplementary Table S1**, long format: 40 rows (ten settings × four family sizes), with median, eight-seed min and max, and the range as a percentage of the median. |
 | `TableS1_threshold_detail.md` | The same table laid out for reading, with footnotes. |
 | `TableS2_M11_grid.tsv` | **Supplementary Table S2**, nine rows: fidelity cut-off × retention level, median threshold, seed range, and the *hdcA* margin on the median and on the least favourable seed. |
 | `TableS2_M11_grid.md` | The same grid as a 3 × 3 panel. |
+| `TableS4_bsh_carriage.tsv` | **Supplementary Table S4** (Additional file 4), one row per species: carrying and tested genomes, *c*<sub>*s*</sub>, mean relative abundance, renormalised weight, and contribution to *H*. The contribution column sums to *H*. |
+| `TableS4_bsh_carriage.md` | The same table laid out for reading, with the *H* = 0.0364, *c*<sub>eff</sub> = 0.936 summary in the footnote. |
+| `TableS4_domain_family.tsv` | The family-level line behind S4: *n*<sub>sp</sub>, *c*<sub>eff</sub>, *H*, *H*\*, the ratio and λ. |
+| `domain_carriage.py` | The pipeline that produced the S4 numbers; kept here so the catalogue can be rebuilt rather than trusted. |
 | `supp_tables_check.txt` | The cell-by-cell comparison of Table S1 against Table 5, and the pooled ranges. |
 | `cross_cohort9_seed_t5_heqcd.tsv` | **Table 5**, one row per cohort-setting. |
 | `cross_cohort9_seed_t6.tsv` | **Table 6**, ten rows matched to *n* = 59, twelve draws each. |
@@ -97,7 +117,10 @@ are possible.
 | Manuscript item | Command | Cost |
 |---|---|---|
 | Supplementary Tables S1, S2 | `python gen_supp_tables.py` | seconds |
+| Supplementary Table S3 | `python gen_cohort_table.py` | seconds |
 | Section 2.4 seed spreads | `python diag_ratio_spread.py` | seconds |
+| Supplementary Table S4 (rebuild) | `python gen_bsh_table.py` | seconds |
+| Supplementary Table S4 (catalogue from scratch) | `python domain_carriage.py --domains PF02275,PF02286,PF05985 --species 12 --per 12` | ~25 min on a 2-core Haswell CPU, plus ~150 MB of downloads |
 | Table 5, Table 6 | `python cross_cohort9_seed.py` then `python heq_cd_only.py` | ~26 min and ~12 s on a 2-core Haswell CPU |
 | Section 2.4 sensitivity grid | `python diag_m11_grid.py` | ~33 s |
 | Section 2.4 window width | `python diag_window_width.py` | not timed here |
