@@ -29,6 +29,14 @@ import os
 import random
 
 BASE = os.path.dirname(os.path.abspath(__file__))
+
+
+def data_path(fn):
+    for d in (BASE, os.path.join(os.path.dirname(BASE), '数据')):
+        p = os.path.join(d, fn)
+        if os.path.exists(p):
+            return p
+    return os.path.join(BASE, fn)
 N_TRIAL = 1200
 N_BOOT = 4000
 SEED = 20261028
@@ -39,7 +47,7 @@ KEEP = 0.95
 GENOME_MB = {
     'Eggerthella_lenta': 3.2, 'Streptococcus_thermophilus': 1.9,
     'Lactobacillus_fermentum': 2.1, 'Bacteroides_nordii': 5.5,
-    'Clostridium_perfringens': 3.0,
+    'Clostridium_perfringens': 3.256683,   # CP000246, 3,256,683 bp
 }
 GENOME_DEFAULT = 3.5
 N_READS = 6_300_000
@@ -84,7 +92,7 @@ def spearman(x, y):
 
 def load():
     carr, car_vals = {}, []
-    with open(os.path.join(BASE, 'TableS1_species_fixed.csv'), encoding='utf-8-sig') as f:
+    with open(data_path('TableS1_species_fixed.csv'), encoding='utf-8-sig') as f:
         for r in csv.DictReader(f):
             sp = (r.get('species') or '').strip().replace(' ', '_')
             a, b = fnum(r.get('n_HSB_strains'), -1), fnum(r.get('n_total_strains'), -1)
@@ -93,7 +101,7 @@ def load():
                                 typ=(r.get('hdcA_type') or '').strip())
                 if a / b > 0:
                     car_vals.append(a / b)
-    with open(os.path.join(BASE, 'ELDERMET_species_189x836.csv'), encoding='utf-8-sig') as f:
+    with open(data_path('ELDERMET_species_189x836.csv'), encoding='utf-8-sig') as f:
         rd = csv.reader(f)
         hdr = next(rd)
         cols = hdr[1:]
@@ -229,6 +237,10 @@ if __name__ == '__main__':
                 members.append((s, a, v['frac'], GENOME_MB.get(s, GENOME_DEFAULT)))
     members.sort(key=lambda z: -z[1])
 
+    # 家族 λ_raw（队列均值口径），供 §5 的 ε 敏感性用，不写死
+    TOT_RAW = sum(N_READS * (a / ABUND_UNIT) * c * GENE_LEN / (g * 1e6)
+                  for (s, a, c, g) in members)
+
     lam_det_i = []
     for i in range(n_ind):
         lam = 0.0
@@ -282,10 +294,10 @@ if __name__ == '__main__':
     A('')
 
     # ---- §5 M5
-    A('§5  M5 P(X≤1) 随 ε 变化（5 样本期望 = 1.525·ε·5）')
+    A('§5  M5 P(X≤1) 随 ε 变化（5 样本期望 = %.3f·ε·5）' % TOT_RAW)
     A('    %-8s %12s %12s' % ('ε', '期望', 'P(X≤1)'))
     for eps, tag in ((0.48, '下限'), (0.54, '逐样本下限'), (0.71, '点估计'), (0.94, '逐样本上限')):
-        lam5 = 1.525 * eps * 5
+        lam5 = TOT_RAW * eps * 5
         A('    %-8.2f %12.2f %12.4f  %s' % (eps, lam5, pois_le(1, lam5), tag))
     A('')
 
@@ -293,7 +305,7 @@ if __name__ == '__main__':
     A('§6  M6 基因长度归一化')
     try:
         import json
-        ref = json.load(open(os.path.join(BASE, 'rpob_ref.json'), encoding='utf-8'))
+        ref = json.load(open(data_path('rpob_ref.json'), encoding='utf-8'))
         aa = [v['length'] for v in ref.values()]
         kb = 3 * (sum(aa) / len(aa)) / 1000
         A('    rpoB 均值 %.0f aa → %.2f kb；hdcA 1.00 kb；长度因子 %.2f' % (sum(aa) / len(aa), kb, kb))

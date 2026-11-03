@@ -6,11 +6,14 @@
 1. dual_constraint.py 的 READS 写死 3,000,000，但深度实验实际扫的是 6.3 M/样本；
    报告 λ=0.64 却拿它去和 6.3 M 下的实测 1 条比，等于少算了一倍。
 2. 更关键：λ 公式算的是「与基因重叠的 reads 数」，而 15-mer 匹配只认
-   **编码链、正确读框、且含完整 15 aa 窗口** 的 reads。100 bp 单端 reads 下，
-   6 个读框里只有 1 个是编码框（另一条链的互补框不是），再扣掉读段跨越
-   基因边界的损失，理论检出效率 ≈ 1/6 × 0.9 ≈ 15%。这个因子此前没有计入，
-   于是「预期 3.2 条、实测 1 条」被当成了自洽，其实是被系统性高估。
+   **能翻出完整 15 aa 窗口** 的 reads，所以要乘一个效率因子 ε。
+   ※ 本脚本 v1 曾把 ε 推成 1/6 × 0.9 ≈ 0.15；**该推导已作废**。它的前提是
+     「固定读一个读框」，而 orf_kmers 是六框翻译，编码框必然在其中
+     （eff_calibration.py 的 in-silico 召回 20,000/20,000 = 1.000 直接否掉了 1/6）。
+     ε 现由 rpoB 单拷贝内参标定为 0.71（下限 0.48），见 eff_calibration.txt 与 §2.7。
 3. 因此「达到 λ=5 需要多少深度」也跟着变，必须重算。
+4. C. perfringens 的基因组原按 3.0 Mb 记，实为 ATCC 13124 染色体 3,256,683 bp
+   （CP000246）；该物种占家族 λ 的 68%，取小会把 λ 高估约 8%。改按实测值。
 
 输出
 ----
@@ -23,12 +26,22 @@ import os
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 
+
+def data_path(fn):
+    """投稿包 与 ../数据 都可能放，按顺序找。"""
+    for d in (BASE, os.path.join(os.path.dirname(BASE), '数据')):
+        p = os.path.join(d, fn)
+        if os.path.exists(p):
+            return p
+    return os.path.join(BASE, fn)
+
 GENOME_MB = {
     'Eggerthella_lenta': 3.2,
     'Streptococcus_thermophilus': 1.9,
     'Lactobacillus_fermentum': 2.1,
     'Bacteroides_nordii': 5.5,
-    'Clostridium_perfringens': 3.0,
+    # ATCC 13124 染色体 CP000246 = 3,256,683 bp（不是 3.0 Mb）
+    'Clostridium_perfringens': 3.256683,
     'Bacteroides_oleiciplenus': 5.5,
 }
 GENOME_DEFAULT = 3.5
@@ -38,10 +51,14 @@ GENE_LEN = 1000         # hdcA 编码区
 READ_LEN = 100
 ABUND_UNIT = 100.0      # ELDERMET supp2 丰度为百分数
 
-# 15-mer 检出效率：6 个读框只有 1 个是编码框；再扣读段跨边界的损失
-FRAME_EFF = 1.0 / 6.0
+# 15-mer 检出效率 ε：**经验标定**，不是几何推演。
+# 旧的 FRAME_EFF = 1/6 前提错误（六框翻译不固定读框），已作废，仅留作对照。
+EPS_CAL = 0.71          # 由 rpoB 单拷贝内参反解，正文 §2.7
+EPS_FLOOR = 0.48        # 最保守参数下的下限（f=1.0, G=3.0 Mb）
+EPS_CEIL = 0.94         # 逐样本上限
+FRAME_EFF_DEPRECATED = 1.0 / 6.0
 EDGE_EFF = (GENE_LEN - READ_LEN) / float(GENE_LEN)
-EFF_15MER = FRAME_EFF * EDGE_EFF
+EFF_15MER = EPS_CAL
 
 # 常规流程（150 bp PE + HMMER/蛋白级搜索）的效率：仍受读框约束，但读段更长、
 # 允许部分窗口、且蛋白级打分容忍错配，取下限 0.5 作为对照
@@ -57,7 +74,7 @@ def fnum(s, d=0.0):
 
 def load_carriage():
     car = {}
-    with open(os.path.join(BASE, 'TableS1_species_fixed.csv'), encoding='utf-8-sig') as f:
+    with open(data_path('TableS1_species_fixed.csv'), encoding='utf-8-sig') as f:
         for r in csv.DictReader(f):
             sp = (r.get('species') or '').strip().replace(' ', '_')
             a, b = fnum(r.get('n_HSB_strains'), -1), fnum(r.get('n_total_strains'), -1)
@@ -67,7 +84,7 @@ def load_carriage():
 
 
 def load_abundance():
-    with open(os.path.join(BASE, 'ELDERMET_species_189x836.csv'), encoding='utf-8-sig') as f:
+    with open(data_path('ELDERMET_species_189x836.csv'), encoding='utf-8-sig') as f:
         rd = csv.reader(f)
         hdr = next(rd)
         cols = hdr[1:]
@@ -139,10 +156,12 @@ def main():
     A('')
     A('家族合计      λ原始 = %.3f /样本     λ检出 = %.3f /样本' % (tot_raw, tot_det))
     A('')
-    A('--- 检出效率分解（100 bp 单端 + 15-mer 精确匹配）---')
-    A('  编码框占比  1/6            = %.3f' % FRAME_EFF)
-    A('  读段不跨边界 (1000-100)/1000 = %.3f' % EDGE_EFF)
-    A('  合计检出效率                = %.3f  (%.1f%%)' % (EFF_15MER, 100 * EFF_15MER))
+    A('--- 检出效率 ε：经验标定（不是几何推演）---')
+    A('  点估计 ε = %.2f   （rpoB 内参反解，eff_calibration.txt）' % EPS_CAL)
+    A('  区间 ε ∈ [%.2f, %.2f]，下限来自最保守假设' % (EPS_FLOOR, EPS_CEIL))
+    A('  【作废】旧推演 1/6 × (1000-100)/1000 = %.3f —— 前提「固定读一个框」不成立，'
+      % (FRAME_EFF_DEPRECATED * EDGE_EFF))
+    A('          六框翻译下编码框必然被穷举，in-silico 召回 1.000 已否掉 1/6。')
     A('')
     A('--- 与实测对照（5 样本，合计 31.3 M reads，实测命中 %d 条）---' % obs_total)
     A('  若用朴素代理（假设菌株全携带）: λ = %.2f/样本 → 5 样本期望 %.1f 条'
@@ -155,8 +174,10 @@ def main():
       % (tot_det, tot_det * n_samples))
     A('      P(X<=1) = %.3f  → 预测与实测自洽' % poisson_cdf_le(1, tot_det * n_samples))
     A('')
-    A('  实测/原始期望 = %.2f，与理论检出效率 %.2f 吻合'
-      % (obs_total / (tot_raw * n_samples), EFF_15MER))
+    A('  实测/原始期望 = %.2f' % (obs_total / (tot_raw * n_samples)))
+    A('    ※ 这个 0.14 是 hdcA 自身的实测产出率，不等于 rpoB 标定的 ε=%.2f；' % EFF_15MER)
+    A('      两者相差约 5 倍，正是正文 §5.5 所说的残余缺口（c_s·a_s 高估携带株丰度），')
+    A('      不能再归给检测器 —— 检测器的机械召回已独立测为 1.000。')
     A('')
     A('--- 达到半定量深度（λ检出 >= 5）所需 reads/样本 ---')
     need_15 = 5.0 / tot_det * N_READS
@@ -168,10 +189,32 @@ def main():
       % (100 * EFF_CONVENTIONAL, need_conv / 1e6, need_conv / N_READS))
     A('  不计效率（仅作参照，不应用）           : %.0f M reads/样本' % (need_raw / 1e6))
     A('')
+    A('--- 敏感性：ε 与 C. perfringens 基因组 ---')
+    A('  %-6s %10s %12s %10s' % ('ε', 'λ检出', '5样本期望', 'P(X≤1)'))
+    for eps in (EPS_FLOOR, 0.54, EPS_CAL, EPS_CEIL):
+        ld = tot_raw * eps
+        A('  %-6.2f %10.3f %12.2f %10.4f'
+          % (eps, ld, ld * n_samples, poisson_cdf_le(obs_total, ld * n_samples)))
+    A('')
+    A('  %-14s %10s %12s %10s' % ('G(perf, Mb)', 'λ检出', '5样本期望', 'P(X≤1)'))
+    for g in (3.0, 3.256683, 3.5, 4.0):
+        alt = 0.0
+        for r in rows:
+            gg = g if r['species'] == 'Clostridium_perfringens' else r['genome_mb']
+            alt += lam_species(r['abundance_pct'], r['carriage'], gg, N_READS)
+        ld = alt * EFF_15MER
+        A('  %-14.3f %10.3f %12.2f %10.4f'
+          % (g, ld, ld * n_samples, poisson_cdf_le(obs_total, ld * n_samples)))
+    A('')
+    A('  结论方向不变：λ检出 0.69–1.36 /样本，全部远低于 5；')
+    A('  唯一会被 G 影响的是 P(X≤1) 是否压在 0.05 以下 —— G=4.0 Mb 时 P=0.062，')
+    A('  该一致性检验本就按「不稳健」披露（正文 §5.8），四状态判定不依赖它。')
+    A('')
     A('结论：本文可行性判定不依赖 λ 的绝对值——无论取哪一档，hdcA 家族都')
-    A('      远低于 λ=5，同时 H = 0.152 超过 H*(n_sp=5) = 0.0426，双约束同时不满足。')
+    A('      远低于 λ=5，同时 H = 0.152 超过 H*(n_sp=5) = 0.0378，双约束同时不满足。')
     A('      （H* 由 09 版的全队列单值 0.0098 改为按家族规模的条件阈值，见 §2.4。）')
-    A('      但"需要多少深度"必须按效率校正后的口径给，否则会把深度的门槛说小 7 倍。')
+    A('      但深度门槛必须按效率校正后的口径给，否则会把它说小 %.1f 倍'
+      '（旧 ε=0.15 时是 6.7 倍）。' % (1 / EFF_15MER))
 
     txt = '\n'.join(L)
     open(os.path.join(BASE, 'lambda_v2.txt'), 'w', encoding='utf-8').write(txt + '\n')
