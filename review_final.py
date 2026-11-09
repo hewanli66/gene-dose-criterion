@@ -20,10 +20,13 @@
 正文的用途是判定**单个**基因族能否用 proxy，因此正确的量是
     P(ρ ≥ 0.90 | H ≈ h) ≥ 0.95
 的最大 h（条件口径），而不是"用 h 筛掉一批族后整体达标"（累积口径）。
-两者在 n_sp 依赖上差别很大：条件口径 2.7 倍，累积口径 1.1 倍。
+两者在 n_sp 依赖上差别很大：条件口径 2.5 倍（n=5→20），累积口径 1.1 倍。
 本脚本主报条件口径，同时给出累积口径以便读者核对。
+
+条件阈值取自 hstar_median.json，与正文 Table 4 和图 1 同源；累积口径现算，仅作对照。
 """
 import csv
+import json
 import math
 import os
 import random
@@ -192,19 +195,26 @@ if __name__ == '__main__':
     A('')
 
     # ---- §1 H*
+    # 条件阈值读 hstar_median.json（中位数种子组），与正文 Table 4 和图 1 同源。
+    # 此前这里现算单种子值，于是本脚本 §7 的比值与 Table 4 对不上：n=3 给 2.36，
+    # 表里是 3.4。正文第 1648 行把本脚本点名为 §5.8 的可复现来源，两处必须同源。
     fams = {}
-    hstar = {}
-    A('§1  H* 表（条件口径为主，累积口径对照；每档 %d 族）' % N_TRIAL)
-    A('    %-6s %10s %10s %10s' % ('n_sp', 'H*(条件)', 'H*(累积)', '条件比值'))
+    hstar = {int(k): float(v) for k, v in
+             json.load(open(data_path('hstar_median.json'), encoding='utf-8')).items()}
+    hstar_one = {}
+    cum = {}
+    A('§1  H* 表（条件口径取 hstar_median.json；累积口径现算；每档 %d 族）' % N_TRIAL)
+    A('    %-6s %10s %10s' % ('n_sp', 'H*(条件)', 'H*(累积)'))
     for n_sp in (3, 5, 10, 20):
         fam = families(car_vals, info, n_sp, n_ind)
         fams[n_sp] = fam
-        hc, hu = h_cond(fam), h_cum(fam)
-        hstar[n_sp] = hc
-        A('    %-6d %10.5f %10.5f' % (n_sp, hc, hu))
-    A('    条件口径范围 %.5f–%.5f，跨 %.1f 倍'
-      % (min(hstar.values()), max(hstar.values()),
-         max(hstar.values()) / min(hstar.values())))
+        hstar_one[n_sp] = h_cond(fam)
+        cum[n_sp] = h_cum(fam)
+        A('    %-6d %10.5f %10.5f' % (n_sp, hstar[n_sp], cum[n_sp]))
+    A('    条件口径 %.5f（n=5）→ %.5f（n=20），跨 %.1f 倍；n=3→20 全程 %.2f 倍'
+      % (hstar[5], hstar[20], hstar[20] / hstar[5], hstar[20] / hstar[3]))
+    A('    本种子组（SEED=%d）单种子条件口径 H*(5)=%.5f，仅供 §4 的阈值不确定性传播用'
+      % (SEED, hstar_one[5]))
     A('')
 
     # ---- §2 M11 网格（条件口径）
@@ -274,8 +284,8 @@ if __name__ == '__main__':
         H = sum(w * (c - ce) ** 2 for w, c in zip(ws, cs))
         lam = sum(N_READS * (m[1] / ABUND_UNIT) * c * GENE_LEN / (m[3] * 1e6)
                   for m, c in zip(members, cs)) * EPS
-        Hs.append(H); ratios.append(H / hstar[5]); lams.append(lam)
-        f_fail = H / hstar[5] > 1
+        Hs.append(H); ratios.append(H / hstar_one[5]); lams.append(lam)
+        f_fail = H / hstar_one[5] > 1
         d_fail = lam < LAM_THR
         if f_fail and d_fail:
             both += 1
@@ -286,8 +296,9 @@ if __name__ == '__main__':
     A('§4  M4 携带率不确定性（Beta 后验，%d 次）' % N_BOOT)
     A('    H 中位 %.3f（90%% 区间 %.3f–%.3f）'
       % (q(Hs, .5), q(Hs, .05), q(Hs, .95)))
-    A('    H/H*(n=5) 中位 %.2f（区间 %.2f–%.2f）'
-      % (q(ratios, .5), q(ratios, .05), q(ratios, .95)))
+    A('    H/H*(n=5) 中位 %.2f（区间 %.2f–%.2f）；H* 取单种子 %.5f，与正文 §3.2 的'
+      ' 3.3–4.0 同口径'
+      % (q(ratios, .5), q(ratios, .05), q(ratios, .95), hstar_one[5]))
     A('    λ_det 中位 %.3f（区间 %.3f–%.3f）'
       % (q(lams, .5), q(lams, .05), q(lams, .95)))
     A('    P(判定 both fail) = %.4f' % (both / N_BOOT))
@@ -323,5 +334,5 @@ if __name__ == '__main__':
     A('')
 
     txt = '\n'.join(L)
-    open(os.path.join(BASE, 'review_response.txt'), 'w', encoding='utf-8').write(txt + '\n')
+    open(os.path.join(BASE, 'final_numbers.txt'), 'w', encoding='utf-8').write(txt + '\n')
     print(txt)

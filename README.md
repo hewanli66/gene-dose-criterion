@@ -46,7 +46,7 @@ deposited files and must agree cell by cell.
 
 | File | Role | Reads | Writes |
 |---|---|---|---|
-| `review_final.py` | Shared library. Defines the simulated family ensemble (`families`), the conditional threshold `h_cond` — the largest *H* at which P(ρ ≥ 0.90 \| H ≈ h) ≥ 0.95 — and Spearman ρ. Its `__main__` reproduces section 2.7 and Table 4. | `TableS1_species_fixed.csv`, `ELDERMET_species_189x836.csv` | `review_M11_grid.tsv`, console |
+| `review_final.py` | Shared library. Defines the simulated family ensemble (`families`), the conditional threshold `h_cond` — the largest *H* at which P(ρ ≥ 0.90 \| H ≈ h) ≥ 0.95 — and Spearman ρ. Its `__main__` reproduces section 2.7 and Table 4, taking the conditional thresholds from `hstar_median.json` so that its ratios match Table 4. | `TableS1_species_fixed.csv`, `ELDERMET_species_189x836.csv`, `hstar_median.json` | `review_M11_grid.tsv`, `final_numbers.txt` (local), console |
 | `cross_cohort9.py` | Cohort-agnostic matrix loader, log–log interpolation of *H*\*, carriage matching for *hdcA*, the prevalence ≥ 20% pool rule. | species matrices | `cross_cohort9.tsv` |
 | `cross_cohort9_seed.py` | **Table 5 and Table 6.** Eight seeds per cell across the ten cohort-settings, 40 cells in Table 5 and 36 in Table 6. | the ten matrices | `cross_cohort9_seed_t5.tsv`, `cross_cohort9_seed_t5_detail.txt`, `cross_cohort9_seed_t6.tsv` |
 | `heq_cd_only.py` | Replaces the Guangzhou row with the 49 samples the curated metadata labels as cases (§2.1.6d). | `HeQ2017_samples_122x.csv`, `HeQ2017_CD_ids.txt` | `heq_cd_only.txt`, `cross_cohort9_seed_t5_heqcd.tsv` |

@@ -6,3 +6,6 @@ figures/
 Thumbs.db
 *.bak
 *.bak-*
+# review_final.py 的本地输出：含中文标签，属工作备忘，不入归档
+final_numbers.txt
+review_response.txt
