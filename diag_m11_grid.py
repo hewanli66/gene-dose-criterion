@@ -4,7 +4,7 @@ diag_m11_grid.py —— M11 敏感性网格（保真门槛 × 保留率）按八
 
 背景：v3 的网格用单一种子生成的家族（review_final.py 里的 fams[5]），
 中位数版全文主值是八种子中位数，网格若仍用单种子，会与
-"every tabulated value is the median of the eight" 的约定冲突（第三轮审稿指出）。
+"every tabulated value is the median of the eight" 的约定冲突。
 
 本脚本对每个种子各生成一批 n_sp = 5 的家族，在 9 个 (target, keep) 组合下
 各求一次 h_cond，报每格的中位数与全距，以及 hdcA（H = 0.1522）相对阈值的倍数。
