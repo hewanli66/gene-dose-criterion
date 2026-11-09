@@ -152,24 +152,29 @@ def fig1():
     yb = ax2.Y(FAM["hdcA_contrib"]["H"] / HSTAR[5])
     f.line(x_a, ya - 3.2, x_a, yb + 3.2, stroke=C_RED, w=1.0, dash="2,1.6", opacity=0.55)
     # 标签右对齐贴在 λ = 5 虚线左侧：原先左对齐从 ax2.x0+95 起排，文字会压在这条虚线上
-    f.text(xm - 4, 156, "hdcA family", size=5.9, anchor="end", fill=C_DARK, halo=True)
+    # 再往左挪到点位左侧，否则与下方深度标注挤成一团
+    x_dot = ax2.X(FAM["hdcA_all"]["lam"])
+    f.text(x_dot - 6, 148, "hdcA family", size=5.9, anchor="end", fill=C_DARK, halo=True)
     # 两个口径的比值由 HSTAR 现算，不手写——否则换阈值组（如中位数版）时标注会与点位不符
     _r20 = FAM["hdcA_all"]["H"] / HSTAR[20]
     _r5 = FAM["hdcA_contrib"]["H"] / HSTAR[5]
-    f.text(xm - 4, 148, "n=20: %.1f   n=5: %.1f" % (_r20, _r5), size=5.2, anchor="end",
+    f.text(x_dot - 6, 158, "n=20: %.1f   n=5: %.1f" % (_r20, _r5), size=5.2, anchor="end",
            fill="#555555", halo=True)
 
     # 加深测序的横向箭头
     y_a = ax2.Y(FAM["hdcA_all"]["H"] / HSTAR[20])
     f.arrow(ax2.X(0.72), y_a, xm - 1, y_a, stroke="#AFAFAF", dash="2,2", head=3.0)
+    # 判据线 H = H* 在 y_a 下方约 10 px（ym = Y(1.0)），标注放 y_a+9 会被虚线穿过；
+    # 改到箭头正上方，与 n = 20 的点错开（点在 x_dot，标注右端止于 x_dot-6）。
     # 倍数与所需 reads 由 λ_det 现算；旧文写死的那个倍数出自已作废的 λ_raw
-    f.text(xm - 2, y_a - 4, "\u00d7 %.1f depth \u2192 %.0f M reads" % (DEPTH_M / 6.3, DEPTH_M),
+    f.text(ax2.X(0.72) - 4, y_a - 3, "\u00d7 %.1f depth \u2192 %.0f M reads" % (DEPTH_M / 6.3, DEPTH_M),
            size=5.4, fill="#8A8A8A", halo=True, anchor="end")
 
     # --- 底部条带：n = 1 家族（H 恒为 0，在对数轴上无位置）---
     sy = 286
     f.line(ax2.x0, sy, ax2.x1, sy, stroke="#C8C8C8", w=0.9)
-    f.line(xm, 252, xm, sy + 7, stroke="#B0B0B0", w=0.8, dash="3,2")
+    # 起点从 252 改为 272：252 会在 x 轴的 "5" 刻度字与轴标题上各划一道竖线
+    f.line(xm, 272, xm, sy + 7, stroke="#B0B0B0", w=0.8, dash="3,2")
     for key, dx, anc in (("elenta", -5, "end"), ("cperf", 5, "start")):
         d = FAM[key]
         f.circle(ax2.X(d["lam"]), sy, 2.8, fill=C_BLUE, stroke="#ffffff", sw=0.8)
