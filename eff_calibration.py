@@ -141,7 +141,13 @@ def main():
     A('3. 用标定后的 ε 重算 hdcA 的 λ 与深度需求')
     A('=' * 74)
     N = 6_300_000
-    LAM_RAW = 1.525        # lambda_v2.py：携带率校正、未扣检出效率、6.3 M reads
+    # λ_raw 由 lambda_v2.tsv 求和得到（携带率校正、未扣检出效率、6.3 M reads）。
+    # 原先写死的值出自基因组尺度的旧估算；C. perfringens 实为
+    # 3,256,683 bp（CP000246）后，合计为 1.4429，正文与 Table 3 都用这个。
+    import csv as _csv
+    _lr = list(_csv.DictReader(open(os.path.join(BASE, 'lambda_v2.tsv'),
+                                    encoding='utf-8-sig'), delimiter='\t'))
+    LAM_RAW = sum(float(r['lambda_raw_6.3M']) for r in _lr)
     lam_raw_per_read = LAM_RAW / N
     A('  λ_raw（携带率校正，未扣 ε）= %.3f / 样本' % LAM_RAW)
     for e in (eps_low, eps_ref, 0.50):

@@ -8,7 +8,7 @@ CRC9_samples_1262x917.csv	CRC-9	ref. 11 (Beghini 2021, eLife 10:e65088)	Suppleme
 Village_samples_1787x1910.csv	Honduras	ref. 15 (Beghini 2025, Nature 637:167-175)	Supplementary Data 4	no	cross_cohort9_seed.py
 Yachida2019_samples_615x1835.csv	Japan	ref. 13 (Yachida 2019, Nat Med 25:968-976)	Zenodo 15069069, `Public_study__YachidaS_2019.tsv`	no	cross_cohort9_seed.py
 Wave3_species_59x.csv	Wave 3	ref. 10 (Zhang 2022, Front Aging Neurosci 14:820108)	Supplementary Table 2 (mOTU profile), collapsed by motu2matrix.py	no	cross_cohort9_seed.py
-Zhu2020_samples_171x359.csv	Xi'an	ref. 14 (Zhu 2020, Nat Commun 11:1612)	Supplementary Data, sheet `Fig 3a`, baseline block only	no	cross_cohort9_seed.py
+Zhu2020_samples_171x359.csv	Xi’an	ref. 14 (Zhu 2020, Nat Commun 11:1612)	Supplementary Data, sheet `Fig 3a`, baseline block only	no	cross_cohort9_seed.py
 CHD_species_102x.csv	Coronary	Feng 2016 (Zenodo 4991531)	`mOTU.prof.upload.txt`, transposed by motu_chd2matrix.py	no	cross_cohort9_seed.py
 HeQ2017_samples_122x.csv	Guangzhou	ref. 12 (He 2017, GigaScience 6:gix050)	Zenodo 17567900, `HeQ_2017_MetaPhlAn3.tsv`	no	cross_cohort9_seed.py, heq_cd_only.py
 HeQ_2017_sample_metadata.tsv	Guangzhou	curatedMetagenomicData	Curation repo, `HeQ_2017_sample.tsv`, column `control`	no — 49 case IDs re-listed below	heq_cd_only.py (falls back to HeQ2017_CD_ids.txt)

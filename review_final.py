@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""审阅回应：所有最终数字的唯一来源。
+"""Final numbers: every quantity cited in the text, computed in one place.
 
 本脚本在修复 H* 的定义错误之后，重算正文需要引用的每一个数：
 
@@ -187,7 +187,7 @@ if __name__ == '__main__':
     L = []
     A = L.append
     A('=' * 76)
-    A('审阅回应：最终数字')
+    A('Final numbers')
     A('=' * 76)
     A('')
 

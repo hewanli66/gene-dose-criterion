@@ -4,3 +4,5 @@ __pycache__/
 figures/
 .DS_Store
 Thumbs.db
+*.bak
+*.bak-*

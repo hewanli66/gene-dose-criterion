@@ -3,7 +3,7 @@
 对应稿件：**Species abundance is not a gene dose: a two-constraint criterion for
 functional inference in metagenomics**（中位数版 v3-M）。
 
-英文正文见 `README.md`，本文件只做中文要点说明，便于你自查与交接。
+英文正文见 `README.md`，本文件只做中文要点说明，便于读者核对与复用。
 
 ---
 
@@ -34,7 +34,7 @@ python diag_ratio_spread.py
 
 - **代码**（27 个 .py，全部只用标准库）
 - **派生产物**（阈值表、种子明细、敏感性网格等）
-- **一张我们整理的携带率表** `TableS1_species_fixed.csv`（96 物种 × 8 列），
+- **一张整理的携带率表** `TableS1_species_fixed.csv`（96 物种 × 8 列），
   它是分析的核心输入，性质上属于"派生表"而非原始丰度矩阵，故随包附带
 
 `data_sources.tsv` 逐文件写明：这个文件属于哪个队列、出自哪份补充材料、

@@ -12,7 +12,7 @@ Every entry is `median (min–max; range as % of the median)` over the eight sim
 | Villages (Honduras) | 1,787 | MetaPhlAn 4 | 1,910 | 467 | 0.0285 (0.0209–0.0491; 99%) | 0.0443 (0.0310–0.0540; 52%) | 0.0766 (0.0605–0.0860; 33%) | 0.0921 (0.0860–0.1003; 16%) |
 | Screening cohort (Japan) | 615 | MetaPhlAn 4 | 1,835 | 300 | 0.0318 (0.0227–0.0399; 54%) | 0.0413 (0.0314–0.0837; 127%) | 0.0714 (0.0549–0.0922; 52%) | 0.1081 (0.0894–0.1185; 27%) |
 | Wave 3 (China), aged ≥65 | 59 | mOTU | 3,694 | 128 | 0.0270 (0.0225–0.0321; 35%) | 0.0390 (0.0310–0.0619; 79%) | 0.0834 (0.0660–0.0938; 33%) | 0.0940 (0.0886–0.1015; 14%) |
-| Xi'an cohort (China) | 171 | mOTU | 359 | 211 | 0.0338 (0.0200–0.0549; 103%) | 0.0525 (0.0354–0.0748; 75%) | 0.1045 (0.0689–0.1171; 46%) | 0.1125 (0.0934–0.1330; 35%) |
+| Xi’an cohort (China) | 171 | mOTU | 359 | 211 | 0.0338 (0.0200–0.0549; 103%) | 0.0525 (0.0354–0.0748; 75%) | 0.1045 (0.0689–0.1171; 46%) | 0.1125 (0.0934–0.1330; 35%) |
 | Coronary cohort (China) | 102 | mOTU | 284 | 116 | 0.0241 (0.0218–0.0336; 49%) | 0.0367 (0.0288–0.0496; 57%) | 0.0806 (0.0534–0.0932; 49%) | 0.0936 (0.0879–0.0962; 9%) |
 
 Pooled ranges across the ten settings, by family size: `n_sp` = 3, 35–123%; `n_sp` = 5, 41–127%; `n_sp` = 10, 12–52%; `n_sp` = 20, 6–35%. Over all 40 cells the range is 6–127% with a median of 47.5%. The `n_sp` = 3 column is weakly identified (it moves 1.8-fold with the width of the moving window, against 1.1-fold at `n_sp` = 20; §2.4) and is reported as an order-of-magnitude anchor only. No comparison in the paper rests on it; the single use is the robustness bound in §2.4, where the *hdcA* family still fails at the largest of the eight seed values at that size.

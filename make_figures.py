@@ -25,16 +25,33 @@ if _hj and os.path.exists(_hj):
     print("[make_figures] HSTAR <- %s : %s" % (_hj, HSTAR))
 # 累积口径（仅作对照，见图 1a 虚线）
 HSTAR_CUM = {3: 0.1162, 5: 0.1273, 10: 0.1185, 20: 0.1123}
+# λ_det（6.3 M reads/样本）从 lambda_v2.tsv 现算，不再写字面量。
+# 2026-11-03 修正基因组大小（C. perfringens 3,256,683 bp）与检出效率后，
+# 原来的三个硬编码值全部作废；写死会让图和表各自漂移——那次只更了正文与
+# Table 3，图 1 底部条带仍印旧值，与表里的 0.681 对不上。
+_LAMROWS = list(csv.DictReader(open(os.path.join(HERE, "lambda_v2.tsv"),
+                                    encoding="utf-8-sig"), delimiter="\t"))
+_lam = {r["species"]: float(r["lambda_detected_6.3M"]) for r in _LAMROWS}
+LAM_FAMILY = sum(_lam.values())                       # 五个贡献种之和
+LAM_HI40 = sum(float(r["lambda_detected_6.3M"]) for r in _LAMROWS
+               if float(r["carriage"]) >= 0.40)       # ≥ 40% 携带率的三物种子集
+# λ_det = 5 所需的深度（百万 reads/样本）：λ_det 已含 ε，直接按 6.3 M 折算
+DEPTH_M = 5.0 * 6.3 / LAM_FAMILY
+
 # 双约束判决：dual_constraint.tsv
 FAM = {
-    "hdcA_all":  dict(label="hdcA family (n=20)", n=20, c_eff=0.278, H=0.15217, lam=1.083),
+    "hdcA_all":  dict(label="hdcA family (n=20)", n=20, c_eff=0.278, H=0.15217, lam=LAM_FAMILY),
     "hdcA_contrib": dict(label="hdcA (contributing species, n=5)", n=5, c_eff=0.278,
-                         H=0.15217, lam=1.083),
-    "hdcA_hi":   dict(label="hdcA \u2265 40% (n=3)", n=3, c_eff=0.796, H=0.08078, lam=0.937),
-    "elenta":    dict(label="E. lenta", n=1, c_eff=1.0, H=0.0, lam=0.102),
-    "cperf":     dict(label="C. perfringens", n=1, c_eff=1.0, H=0.0, lam=0.739),
-    "sthermo":   dict(label="S. thermophilus", n=1, c_eff=0.052, H=0.0, lam=0.117),
-    "lferm":     dict(label="L. fermentum", n=1, c_eff=0.016, H=0.0, lam=0.029),
+                         H=0.15217, lam=LAM_FAMILY),
+    "hdcA_hi":   dict(label="hdcA \u2265 40% (n=3)", n=3, c_eff=0.796, H=0.08078, lam=LAM_HI40),
+    "elenta":    dict(label="E. lenta", n=1, c_eff=1.0, H=0.0,
+                      lam=_lam["Eggerthella_lenta"]),
+    "cperf":     dict(label="C. perfringens", n=1, c_eff=1.0, H=0.0,
+                      lam=_lam["Clostridium_perfringens"]),
+    "sthermo":   dict(label="S. thermophilus", n=1, c_eff=0.052, H=0.0,
+                      lam=_lam["Streptococcus_thermophilus"]),
+    "lferm":     dict(label="L. fermentum", n=1, c_eff=0.016, H=0.0,
+                      lam=_lam["Lactobacillus_fermentum"]),
 }
 LAM_MIN = 5.0
 
@@ -145,7 +162,8 @@ def fig1():
     # 加深测序的横向箭头
     y_a = ax2.Y(FAM["hdcA_all"]["H"] / HSTAR[20])
     f.arrow(ax2.X(0.72), y_a, xm - 1, y_a, stroke="#AFAFAF", dash="2,2", head=3.0)
-    f.text(xm - 2, y_a + 13, "\u00d7 4.6 depth \u2192 29 M reads",
+    # 倍数与所需 reads 由 λ_det 现算；旧文写死的那个倍数出自已作废的 λ_raw
+    f.text(xm - 2, y_a - 4, "\u00d7 %.1f depth \u2192 %.0f M reads" % (DEPTH_M / 6.3, DEPTH_M),
            size=5.4, fill="#8A8A8A", halo=True, anchor="end")
 
     # --- 底部条带：n = 1 家族（H 恒为 0，在对数轴上无位置）---
