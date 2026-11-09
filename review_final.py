@@ -186,6 +186,14 @@ def pois_le(k, lam):
 
 
 if __name__ == '__main__':
+    # 这份矩阵不在归档里（见 README 第 5 节）。缺了就停在这里给出取法，
+    # 而不是抛 FileNotFoundError —— 归档下载后应当看到该怎么办，不是一段堆栈。
+    if not os.path.exists(data_path('ELDERMET_species_189x836.csv')):
+        raise SystemExit(
+            '[缺文件] ELDERMET_species_189x836.csv\n'
+            '        取自 Ghosh et al. 2020, eLife 9:e50240 (CC BY 4.0) 的\n'
+            '        Supplementary file 2, worksheet B；取法见 README 第 5 节，\n'
+            '        生成的文件应为 584,146 字节，md5 16c2683a6c18c94867e1d8b34bf8592a。')
     carr, car_vals, mat, info, cols, n_ind = load()
     L = []
     A = L.append

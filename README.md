@@ -152,6 +152,20 @@ They scale with the single core the simulation uses.
 
 - **The primary abundance matrices.** Eleven published tables, each owned by the study
   that produced it. `data_sources.tsv` gives the supplement or archive for each.
+
+  `ELDERMET_species_189x836.csv` is the one that cannot be skipped. Fourteen scripts
+  name it, and eight of them open it without a missing-file guard, so a clean download
+  stops with `FileNotFoundError` rather than reporting `[缺文件]`; it is also the matrix
+  behind Table 4 and section 2.7. It is Supplementary
+  file 2 of Ghosh et al. (2020, *eLife* 9:e50240, CC BY 4.0), available from
+  <https://cdn.elifesciences.org/articles/50240/elife-50240-supp2-v1.xlsx>
+  (635,165 bytes, md5 `c3c7f79f2c8ead99407f3f905abe9836`). Take **worksheet `B`** and
+  write it out as comma-separated values with a leading `SampleID` column: the sheet
+  carries the 189 sample identifiers in column A but leaves cell A1 empty, so the
+  header row needs that name supplied. The file that results is 584,146 bytes, md5
+  `16c2683a6c18c94867e1d8b34bf8592a`, and reproduces every number in Table 4.
+  `review_final.py` prints these same instructions when the file is absent.
+
 - **The 122-sample Guangzhou metadata table** published by curatedMetagenomicData
   Curation. The 49 case IDs derived from it are included; the full table should be
   taken from the repository.
