@@ -63,7 +63,7 @@ deposited files and must agree cell by cell.
 | `fetch_rpob.py`, `extract_kmers.py`, `scan_rpob.py` | Fetch the `rpoB` references from the EBI Proteins API, build the conserved k-mer set and the full k-mer index, and scan reads against it. | EBI Proteins API, ENA reads | `rpob_ref.json`, `conserved_kmers.json`, `reference_kmers.json` |
 | `domain_carriage.py` | **Supplementary Table S4**: strain-level carriage of bile salt hydrolase, measured genome by genome. Downloads proteomes from **UniParc** (not UniProtKB — see note below), scans them with a Pfam HMM through pyhmmer, and computes *c*<sub>*s*</sub>, *H* and λ. | UniParc/EBI and InterPro (network); local Pfam HMM files | `domain_family.tsv`, `domain_carriage.tsv`, `domain_hits.tsv` |
 | `gen_bsh_table.py` | Lays out Supplementary Table S4 with the abundance weights and the per-species contribution to *H*, and re-derives *H* from those columns as a check. It also runs the single-species sensitivity test of section 5.10: setting a species to zero carriage removes a carrier, so *n*<sub>sp</sub> falls from 11 to 10 and the ratios are taken against *H*\*(10) = 0.0732 rather than *H*\*(11) = 0.0757. | `domain_carriage.tsv` | `TableS4_bsh_carriage.{tsv,md}` |
-| `m6_discriminant.py` | Section 2.10 and Supplementary Table S5: whether *H* carries information beyond *c*<sub>eff</sub>. Enumerates sub-families of each cohort's real *hdcA* carrier set (sizes 3, 4, 5, 6, 8, 10; up to 250 subsets per cohort and size), scores each against ρ on the real abundance profiles, and compares the two rules by AUC, confusion matrix and within-quartile ranking. Also builds the analytic families with fixed carriage, the synthetic sample from the calibration model, and the catalogue-band families. Seed 20261103. | species matrices, `cross_cohort9.tsv`, `TableS1_species_fixed.csv` | `m6_ensemble.tsv`, `m6_report.txt` (console) |
+| `m6_discriminant.py` | Section 2.10 and Supplementary Table S5: whether *H* carries information beyond *c*<sub>eff</sub>. Enumerates sub-families of each cohort’s real *hdcA* carrier set (sizes 3, 4, 5, 6, 8, 10; up to 250 subsets per cohort and size), scores each against ρ on the real abundance profiles, and compares the two rules by AUC, confusion matrix and within-quartile ranking. Also builds the analytic families with fixed carriage, the synthetic sample from the calibration model, and the catalogue-band families. Seed 20261103. | species matrices, `cross_cohort9.tsv`, `TableS1_species_fixed.csv` | `m6_ensemble.tsv`, `m6_report.txt` (console) |
 | `svgplot.py` | Minimal SVG plotting layer used by `make_figures.py`. No matplotlib. | — | — |
 | `xlsx2csv.py` | Minimal xlsx reader used by `motu2matrix.py`. | — | — |
 
@@ -74,7 +74,7 @@ deposited files and must agree cell by cell.
 > endpoint that works; the returned sequence count matches the listed protein count. This
 > cost half an hour of empty downloads to find, and is recorded so that it does not cost
 > the next reader the same. No functional annotation is needed for the HMM scan, so
-> UniParc's lack of annotation is not a limitation.
+> UniParc’s lack of annotation is not a limitation.
 
 ### Deposited results
 
@@ -98,7 +98,7 @@ deposited files and must agree cell by cell.
 | `review_M11_grid_median.tsv` | The eight-seed medians of the 3 × 3 grid. |
 | `diag_window_width.txt`, `diag_m11_grid.txt` | Console output of the two diagnostics, kept so that the quoted numbers have a traceable source. |
 | `hstar_median.json` | The ELDERMET threshold at the four family sizes, as used by the figure script. |
-| `TableS1_species_fixed.csv` | The carriage catalogue: 96 species, eight columns, strain-level *hdcA* carriage and cofactor class. This is a derived table, not primary data, and it is included so that the analysis can be re-run without re-parsing the publisher's spreadsheet. |
+| `TableS1_species_fixed.csv` | The carriage catalogue: 96 species, eight columns, strain-level *hdcA* carriage and cofactor class. This is a derived table, not primary data, and it is included so that the analysis can be re-run without re-parsing the publisher’s spreadsheet. |
 | `HeQ2017_CD_ids.txt` | The 49 Guangzhou sample IDs labelled as cases. |
 | `_ena_heq_runs.tsv` | The 122 run accessions of PRJEB15371, for checking against the 117 samples the source paper reports (§ reference 12). |
 | `cross_cohort.tsv`, `cross_cohort3.tsv`, `cross_cohort5.tsv`, `cross_cohort8.tsv`, `cross_cohort_seed.tsv`, `cross_cohort9.tsv` | The threshold table at each stage of the cohort set (1, 3, 5, 8, 9 cohorts, plus the four-seed variant). Section 2.4 quotes the progression; `cross_cohort9_seed_t5_heqcd.tsv` is the final one. |
