@@ -16,7 +16,10 @@ another:
 
 No third-party Python packages are required. Everything is standard library; the SVG
 plotting and the xlsx reader are the two small modules included at the bottom of the
-list below.
+list below. The one exception is the HMM scan under `nsp_profiler/multi_family/`, which
+needs `pyhmmer` 0.12.3; nothing in the manuscript depends on it. The paragraph in §3.2
+that compares two profiler versions is reproduced by scripts that use only the standard
+library.
 
 ---
 
@@ -107,6 +110,24 @@ deposited files and must agree cell by cell.
 | `supplement_hstar.txt` | The three ELDERMET residence subsets (all 189, community-dwelling 105, care 53). |
 | `rpob_ref.json`, `conserved_kmers.json`, `reference_kmers.json` | `rpoB` reference sequences, the conserved k-mer set used for the read-level scan, and the full k-mer index (0.6 MB) so that the scan can be re-run without refetching. |
 
+### `nsp_profiler/` — profiler version, and the criterion on a wider panel
+
+Two bodies of work that read HUMAnN output rather than finished tables, kept in their own
+folder with their own README.
+
+`nsp_profiler/humann3/` holds the evidence behind §3.2's paragraph on whether family size
+survives a pipeline upgrade. Five iHMP samples were processed by both HUMAnN 2 and HUMAnN 3
+against one MetaPhlAn 3 species table; the stratified `genefamilies` lines give the
+per-species contributions directly, and `decompose_v2v3.py` splits each change of verdict
+into the part caused by the family size moving and the part caused by *H* moving.
+`decompose_default.log` is the console output at the default arguments, which is the run the
+manuscript quotes.
+
+`nsp_profiler/multi_family/` applies the same criterion to 538 Pfam families with at least
+one catalogue carrier, re-runs it under HMP2 abundance weights, and repeats it per
+individual. None of it is quoted in the manuscript; it is deposited so that the claim that
+the failure mode is not specific to *hdcA* and bile salt hydrolase can be checked.
+
 ---
 
 ## 3. Reproducing each item from the primary data
@@ -129,6 +150,8 @@ are possible.
 | Section 2.4 residence subsets | `python supplement_hstar.py` | not timed here |
 | Table 4, section 2.7 | `python review_final.py` | not timed here (4,000 bootstrap draws) |
 | Section 2.10, Supplementary Table S5 | `python m6_discriminant.py` | ~4 min on a 2-core Haswell CPU |
+| §3.2, two profiler versions | `python pair_v2v3.py` then `python decompose_v2v3.py` (in `nsp_profiler/humann3/`) | seconds, once the packages are unpacked |
+| 538-family panel (not in the manuscript) | `python run_panel_mp.py --procs 8` then `python summarize_panel.py` (in `nsp_profiler/multi_family/`) | not timed here, plus the HMM downloads |
 | Figures 1–6 | `FIG_OUT=./figures python make_figures.py` | seconds |
 
 Run times are from the machine the analysis was done on (Intel i3-4170, Windows 11).
@@ -171,6 +194,15 @@ They scale with the single core the simulation uses.
   taken from the repository.
 - **Raw reads.** The five ELDERMET runs used to calibrate detection efficiency are ENA
   runs ERR3986546, ERR3986547, ERR3986549, ERR3986555 and ERR3986557 (PRJEB37017).
+- **The HMP2 HUMAnN packages.** The `humann3` and `multi_family` folders in `nsp_profiler/`
+  read two things from the IBDMDB release: the per-sample HUMAnN packages under
+  `products/HMP2/MGX/func_profile3_WGS/` and `products/HMP2/MGX/2018-05-04/func_profiles/`
+  on the public Globus endpoint `g-227ca.190ebd.75bc.data.globus.org`, and the MetaPhlAn 3
+  species table beside them. Neither is redistributed. The two directories sit at different
+  depths in the release, which is recorded because requesting the v2 packages at the top
+  level returns 404 and reads as a dead endpoint.
+- **The Pfam HMM files.** 25 MB of profile HMMs, served by InterPro for the families listed
+  in `nsp_profiler/multi_family/pfam_catalog.tsv`. `fetch_hmms.py` downloads them.
 
 ---
 
